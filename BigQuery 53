@@ -1,0 +1,681 @@
+`bigquery-public-data.baseball.games_wide`
+Q1) What is the baseball game wide rate shown in the public data set with limit 10?
+Select*from `bigquery-public-data.baseball.games_wide`
+LIMIT 10
+
+Q2)What is the inning number?
+select inningNumber from `bigquery-public-data.baseball.games_wide`
+order by inningNumber ASC
+limit 10
+Row	inningNumber	
+1	1
+2	1
+3	1
+4	1
+5	1
+6	1
+7	1
+8	1
+9	1
+10	1
+
+
+
+Q3)what is the game status between 2015 and 2016?
+select gameStatus from `bigquery-public-data.baseball.games_wide` where 
+year between 2015 and 2016
+limit 5 
+gameStatus
+closed
+closed
+closed
+closed
+closed
+
+Q4)what is the height in descending order?
+select dayNight  from `bigquery-public-data.baseball.games_wide`
+order by hitterHeight DESC
+limit 10
+dayNight
+
+1	
+N
+2	
+N
+3	
+N
+4	
+N
+5	
+N
+6	
+D
+7	
+D
+8	
+D
+9	
+D
+10	
+N
+
+
+Q5)What are the half inning event number between 3 and 7?
+select inningHalfEventSequenceNumber	
+from `bigquery-public-data.baseball.games_wide`
+where inningHalfEventSequenceNumber	between 3 and 7
+limit 10
+inningHalfEventSequenceNumber 
+  3
+2
+3
+3
+6
+4
+5
+5
+5
+6
+4
+7
+4
+8
+3
+9
+4
+10
+3
+
+Q6)what is the season with duration greater than 195 minutes?
+select seasonType from `bigquery-public-data.baseball.games_wide`
+where durationMinutes > 195
+limit 10
+seasonType
+1	
+REG
+2	
+REG
+3	
+REG
+4	
+REG
+5	
+REG
+6	
+REG
+7	
+REG
+8	
+REG
+9	
+REG
+10	
+REG
+
+year	attendance
+
+  1
+ 2016
+ 24678
+2
+ 2016
+ 24678
+ 3
+ 2016
+ 24678 
+4 
+2016
+ 24678 
+5 
+2016
+ 17685 
+6 
+2016
+ 17685
+ 7
+ 2016
+ 17685
+ 8
+ 2016
+ 17685
+ 9
+ 2016 
+17685
+ 10 
+2016
+17685
+
+ 
+
+durationhomeTeamNamevenueCity1
+3:19
+Rockies
+Denver
+2
+3:19
+Rockies
+Denver
+3
+3:19
+Rockies
+Denver
+4
+3:19
+Rockies
+Denver
+5
+3:19
+Rockies
+Denver
+6
+3:19
+Rockies
+Denver
+7
+3:19
+RockiesDenver
+8
+3:19
+Rockies
+Denver
+9
+3:19
+Rockies
+Denver
+10
+3:19
+Rockies
+Denver
+
+
+Q7)what is the year and attendance?
+select case1.year, case2.attendance from 
+`bigquery-public-data.baseball.games_wide`as case1
+join `bigquery-public-data.baseball.games_wide` as case2
+on ( case1.year = case2.year)
+limit 10
+ow	year	attendance	
+1	
+2016
+24678
+2	
+2016
+24678
+3	
+2016
+24678
+4	
+2016
+24678
+5	
+2016
+17685
+6	
+2016
+17685
+7	
+2016
+17685
+8	
+2016
+17685
+9	
+2016
+17685
+10	
+2016
+17685
+
+Q8)what is the duration and the team name?
+select case1.duration, case2.homeTeamName, case3.venueCity from 
+`bigquery-public-data.baseball.games_wide`as case1
+join `bigquery-public-data.baseball.games_wide` as case2
+on ( case1.duration = case2.duration)
+join `bigquery-public-data.baseball.games_wide` as case3
+on (case2.homeTeamName = case3.homeTeamName)
+limit 10
+Row	duration	homeTeamName	venueCity	
+1	
+3:19
+Rockies
+Denver
+2	
+3:19
+Rockies
+Denver
+3	
+3:19
+Rockies
+Denver
+4	
+3:19
+Rockies
+Denver
+5	
+3:19
+Rockies
+Denver
+6	
+3:19
+Rockies
+Denver
+7	
+3:19
+Rockies
+Denver
+8	
+3:19
+Rockies
+Denver
+9	
+3:19
+Rockies
+Denver
+10	
+3:19
+Rockies
+Denver
+
+Q9)what is the length?
+select * from `bigquery-public-data.baseball.games_wide`
+where length(gameId)>5
+limit 3
+
+Row	gameId	seasonId	seasonType	year	startTime	gameStatus	attendance	dayNight	duration	durationMinutes	awayTeamId	awayTeamName	homeTeamId	homeTeamName	venueId	venueName	venueSurface	venueCapacity	venueCity	venueState	venueZip	venueMarket	venueOutfieldDistances	homeFinalRuns	homeFinalHits	homeFinalErrors	awayFinalRuns	awayFinalHits	awayFinalErrors	homeFinalRunsForInning	awayFinalRunsForInning	inningNumber	inningHalf	inningEventType	inningHalfEventSequenceNumber	description	atBatEventType	atBatEventSequenceNumber	createdAt	updatedAt	status	outcomeId	outcomeDescription	hitterId	hitterLastName	hitterFirstName	hitterWeight	hitterHeight	hitterBatHand	pitcherId	pitcherFirstName	pitcherLastName	pitcherThrowHand	pitchType	pitchTypeDescription	pitchSpeed	pitchZone	pitcherPitchCount	hitterPitchCount	hitLocation	hitType	startingBalls	startingStrikes	startingOuts	balls	strikes	outs	rob0_start	rob0_end	rob0_isOut	rob0_outcomeId	rob0_outcomeDescription	rob1_start	rob1_end	rob1_isOut	rob1_outcomeId	rob1_outcomeDescription	rob2_start	rob2_end	rob2_isOut	rob2_outcomeId	rob2_outcomeDescription	rob3_start	rob3_end	rob3_isOut	rob3_outcomeId	rob3_outcomeDescription	is_ab	is_ab_over	is_hit	is_on_base	is_bunt	is_bunt_shown	is_double_play	is_triple_play	is_wild_pitch	is_passed_ball	homeCurrentTotalRuns	awayCurrentTotalRuns	awayFielder1	awayFielder2	awayFielder3	awayFielder4	awayFielder5	awayFielder6	awayFielder7	awayFielder8	awayFielder9	awayFielder10	awayFielder11	awayFielder12	awayBatter1	awayBatter2	awayBatter3	awayBatter4	awayBatter5	awayBatter6	awayBatter7	awayBatter8	awayBatter9	homeFielder1	homeFielder2	homeFielder3	homeFielder4	homeFielder5	homeFielder6	homeFielder7	homeFielder8	homeFielder9	homeFielder10	homeFielder11	homeFielder12	homeBatter1	homeBatter2	homeBatter3	homeBatter4	homeBatter5	homeBatter6	homeBatter7	homeBatter8	homeBatter9	lineupTeamId	lineupPlayerId	lineupPosition	lineupOrder	
+1	
+6dc681ea-0abc-457d-8b0a-a7c0daae412e
+565de4be-dc80-4849-a7e1-54bc79156cc8
+REG
+2016
+2016-06-09 21:10:00 UTC
+closed
+24678
+D
+2:53
+173
+481dfe7e-5dab-46ab-a49f-9dcc2b6e2cfd
+Pirates
+29dd9a87-5bcc-4774-80c3-7f50d985068b
+Rockies
+85dd5cd6-7324-4b52-a1cc-68f816d0cdce
+Coors Field
+grass
+50398
+Denver
+CO
+80205
+Colorado
+mrf-365:mlcf-397:cf-415:rcf-375:rf-350:mlf-361:lf-347:mrcf-391:lcf-390
+11
+14
+3
+5
+7
+0
+0
+0
+9
+TOP
+AT_BAT
+1
+Chris Stewart called out on strikes.
+PITCH
+3
+2016-06-09 23:59:56 UTC
+2016-06-10 00:00:02 UTC
+official
+kKL
+Strike Looking
+6b49769c-fa3a-4b23-8f12-5094ca4155ab
+Stewart
+Chris
+210
+76
+R
+0081ffb9-e0d7-4e7f-9adf-d6b36cbb959a
+Chad
+Qualls
+R
+SI
+Sinker
+91
+7
+3
+3
+0
+1
+1
+0
+1
+2
+0
+0
+false
+0
+false
+0
+false
+0
+false
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+11
+5
+e764faa0-a6fb-4986-b24b-ab32f07b6b81
+6b49769c-fa3a-4b23-8f12-5094ca4155ab
+ba0ec5b4-ddd9-4f8f-a3d8-2e0c0c84047a
+fac2c963-298c-469a-8b21-d700908a511c
+6b511f87-fd17-4dfd-b227-8e96fc8951c2
+f7e89c0d-5a15-4085-9a46-18aaaa5955da
+1c58cf18-0d61-479d-9438-0a4057f552ef
+6f4ebcb1-5518-4e8a-9fdc-a3ed5358a22b
+51cfeba6-6ea2-420b-8512-92584890a8a1
+55955b56-8197-4c82-9653-e0348917739d
+ba0ec5b4-ddd9-4f8f-a3d8-2e0c0c84047a
+fac2c963-298c-469a-8b21-d700908a511c
+51cfeba6-6ea2-420b-8512-92584890a8a1
+1c58cf18-0d61-479d-9438-0a4057f552ef
+6b511f87-fd17-4dfd-b227-8e96fc8951c2
+e764faa0-a6fb-4986-b24b-ab32f07b6b81
+f7e89c0d-5a15-4085-9a46-18aaaa5955da
+6b49769c-fa3a-4b23-8f12-5094ca4155ab
+6f4ebcb1-5518-4e8a-9fdc-a3ed5358a22b
+0081ffb9-e0d7-4e7f-9adf-d6b36cbb959a
+96da1d70-153b-4783-999a-858ef2c5c508
+d0f4c8f6-1d2a-456d-b292-16e37231e738
+e29232b6-1e3a-411e-b498-a0f77bb83cce
+30c281d4-5f16-4398-8ad0-39ef38e16973
+f8ab2aa3-26ce-447c-9db5-83ea5f13da0c
+fc480cce-2f6e-4af0-b33b-36194e714a42
+6d5ea773-5f3d-470e-b572-b59fc278f892
+e7b98206-956a-4409-9f22-64f2048a31ee
+e29232b6-1e3a-411e-b498-a0f77bb83cce
+6d5ea773-5f3d-470e-b572-b59fc278f892
+0081ffb9-e0d7-4e7f-9adf-d6b36cbb959a
+30c281d4-5f16-4398-8ad0-39ef38e16973
+fc480cce-2f6e-4af0-b33b-36194e714a42
+f8ab2aa3-26ce-447c-9db5-83ea5f13da0c
+d0f4c8f6-1d2a-456d-b292-16e37231e738
+e7b98206-956a-4409-9f22-64f2048a31ee
+96da1d70-153b-4783-999a-858ef2c5c508
+e29232b6-1e3a-411e-b498-a0f77bb83cce
+0
+0
+2	
+6dc681ea-0abc-457d-8b0a-a7c0daae412e
+565de4be-dc80-4849-a7e1-54bc79156cc8
+REG
+2016
+2016-06-09 21:10:00 UTC
+closed
+24678
+D
+2:53
+173
+481dfe7e-5dab-46ab-a49f-9dcc2b6e2cfd
+Pirates
+29dd9a87-5bcc-4774-80c3-7f50d985068b
+Rockies
+85dd5cd6-7324-4b52-a1cc-68f816d0cdce
+Coors Field
+grass
+50398
+Denver
+CO
+80205
+Colorado
+mrf-365:mlcf-397:cf-415:rcf-375:rf-350:mlf-361:lf-347:mrcf-391:lcf-390
+11
+14
+3
+5
+7
+0
+0
+0
+9
+TOP
+AT_BAT
+1
+Chris Stewart called out on strikes.
+PITCH
+5
+2016-06-10 00:00:35 UTC
+2016-06-10 00:00:42 UTC
+official
+kKL
+Strike Looking
+6b49769c-fa3a-4b23-8f12-5094ca4155ab
+Stewart
+Chris
+210
+76
+R
+0081ffb9-e0d7-4e7f-9adf-d6b36cbb959a
+Chad
+Qualls
+R
+SI
+Sinker
+91
+3
+5
+5
+0
+2
+2
+0
+2
+3
+1
+0
+false
+0
+false
+0
+false
+0
+false
+1
+1
+0
+0
+0
+0
+0
+0
+0
+0
+11
+5
+e764faa0-a6fb-4986-b24b-ab32f07b6b81
+6b49769c-fa3a-4b23-8f12-5094ca4155ab
+ba0ec5b4-ddd9-4f8f-a3d8-2e0c0c84047a
+fac2c963-298c-469a-8b21-d700908a511c
+6b511f87-fd17-4dfd-b227-8e96fc8951c2
+f7e89c0d-5a15-4085-9a46-18aaaa5955da
+1c58cf18-0d61-479d-9438-0a4057f552ef
+6f4ebcb1-5518-4e8a-9fdc-a3ed5358a22b
+51cfeba6-6ea2-420b-8512-92584890a8a1
+55955b56-8197-4c82-9653-e0348917739d
+ba0ec5b4-ddd9-4f8f-a3d8-2e0c0c84047a
+fac2c963-298c-469a-8b21-d700908a511c
+51cfeba6-6ea2-420b-8512-92584890a8a1
+1c58cf18-0d61-479d-9438-0a4057f552ef
+6b511f87-fd17-4dfd-b227-8e96fc8951c2
+e764faa0-a6fb-4986-b24b-ab32f07b6b81
+f7e89c0d-5a15-4085-9a46-18aaaa5955da
+6b49769c-fa3a-4b23-8f12-5094ca4155ab
+6f4ebcb1-5518-4e8a-9fdc-a3ed5358a22b
+0081ffb9-e0d7-4e7f-9adf-d6b36cbb959a
+96da1d70-153b-4783-999a-858ef2c5c508
+d0f4c8f6-1d2a-456d-b292-16e37231e738
+e29232b6-1e3a-411e-b498-a0f77bb83cce
+30c281d4-5f16-4398-8ad0-39ef38e16973
+f8ab2aa3-26ce-447c-9db5-83ea5f13da0c
+fc480cce-2f6e-4af0-b33b-36194e714a42
+6d5ea773-5f3d-470e-b572-b59fc278f892
+e7b98206-956a-4409-9f22-64f2048a31ee
+e29232b6-1e3a-411e-b498-a0f77bb83cce
+6d5ea773-5f3d-470e-b572-b59fc278f892
+0081ffb9-e0d7-4e7f-9adf-d6b36cbb959a
+30c281d4-5f16-4398-8ad0-39ef38e16973
+fc480cce-2f6e-4af0-b33b-36194e714a42
+f8ab2aa3-26ce-447c-9db5-83ea5f13da0c
+d0f4c8f6-1d2a-456d-b292-16e37231e738
+e7b98206-956a-4409-9f22-64f2048a31ee
+96da1d70-153b-4783-999a-858ef2c5c508
+e29232b6-1e3a-411e-b498-a0f77bb83cce
+0
+0
+3	
+6dc681ea-0abc-457d-8b0a-a7c0daae412e
+565de4be-dc80-4849-a7e1-54bc79156cc8
+REG
+2016
+2016-06-09 21:10:00 UTC
+closed
+24678
+D
+2:53
+173
+481dfe7e-5dab-46ab-a49f-9dcc2b6e2cfd
+Pirates
+29dd9a87-5bcc-4774-80c3-7f50d985068b
+Rockies
+85dd5cd6-7324-4b52-a1cc-68f816d0cdce
+Coors Field
+grass
+50398
+Denver
+CO
+80205
+Colorado
+mrf-365:mlcf-397:cf-415:rcf-375:rf-350:mlf-361:lf-347:mrcf-391:lcf-390
+11
+14
+3
+5
+7
+0
+0
+0
+9
+TOP
+AT_BAT
+2
+Sean Rodriguez called out on strikes.
+PITCH
+2
+2016-06-10 00:01:39 UTC
+2016-06-10 00:01:46 UTC
+official
+kKL
+Strike Looking
+6f4ebcb1-5518-4e8a-9fdc-a3ed5358a22b
+Rodriguez
+Sean
+200
+72
+R
+0081ffb9-e0d7-4e7f-9adf-d6b36cbb959a
+Chad
+Qualls
+R
+SL
+Slider
+85
+9
+7
+2
+0
+0
+1
+1
+0
+2
+1
+0
+false
+0
+false
+0
+false
+0
+false
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+11
+5
+e764faa0-a6fb-4986-b24b-ab32f07b6b81
+6b49769c-fa3a-4b23-8f12-5094ca4155ab
+ba0ec5b4-ddd9-4f8f-a3d8-2e0c0c84047a
+fac2c963-298c-469a-8b21-d700908a511c
+6b511f87-fd17-4dfd-b227-8e96fc8951c2
+f7e89c0d-5a15-4085-9a46-18aaaa5955da
+1c58cf18-0d61-479d-9438-0a4057f552ef
+6f4ebcb1-5518-4e8a-9fdc-a3ed5358a22b
+51cfeba6-6ea2-420b-8512-92584890a8a1
+55955b56-8197-4c82-9653-e0348917739d
+ba0ec5b4-ddd9-4f8f-a3d8-2e0c0c84047a
+fac2c963-298c-469a-8b21-d700908a511c
+51cfeba6-6ea2-420b-8512-92584890a8a1
+1c58cf18-0d61-479d-9438-0a4057f552ef
+6b511f87-fd17-4dfd-b227-8e96fc8951c2
+e764faa0-a6fb-4986-b24b-ab32f07b6b81
+f7e89c0d-5a15-4085-9a46-18aaaa5955da
+6b49769c-fa3a-4b23-8f12-5094ca4155ab
+6f4ebcb1-5518-4e8a-9fdc-a3ed5358a22b
+0081ffb9-e0d7-4e7f-9adf-d6b36cbb959a
+96da1d70-153b-4783-999a-858ef2c5c508
+d0f4c8f6-1d2a-456d-b292-16e37231e738
+e29232b6-1e3a-411e-b498-a0f77bb83cce
+30c281d4-5f16-4398-8ad0-39ef38e16973
+f8ab2aa3-26ce-447c-9db5-83ea5f13da0c
+fc480cce-2f6e-4af0-b33b-36194e714a42
+6d5ea773-5f3d-470e-b572-b59fc278f892
+e7b98206-956a-4409-9f22-64f2048a31ee
+e29232b6-1e3a-411e-b498-a0f77bb83cce
+6d5ea773-5f3d-470e-b572-b59fc278f892
+0081ffb9-e0d7-4e7f-9adf-d6b36cbb959a
+30c281d4-5f16-4398-8ad0-39ef38e16973
+fc480cce-2f6e-4af0-b33b-36194e714a42
+f8ab2aa3-26ce-447c-9db5-83ea5f13da0c
+d0f4c8f6-1d2a-456d-b292-16e37231e738
+e7b98206-956a-4409-9f22-64f2048a31ee
+96da1d70-153b-4783-999a-858ef2c5c508
+e29232b6-1e3a-411e-b498-a0f77bb83cce
+0
+0
+
+Q10)what is the venue?
+select upper(venueCity) from `bigquery-public-data.baseball.games_wide`
+order by venueZIP
+limit 5
+Row	f0_	
+1	
+TORONTO
+2	
+TORONTO
+3	
+TORONTO
+4	
+TORONTO
+5	
+TORONTO
